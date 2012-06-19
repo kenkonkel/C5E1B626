@@ -8,15 +8,27 @@
     </Window.Resources>
     <Grid DataContext="{Binding Source={StaticResource Model}}">
         <DockPanel>
-            <ListBox ItemsSource="{Binding Path=GetMeSomeManufacturers}" DockPanel.Dock="Top" x:Name="lstResources">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="35" PreviewMouseLeftButtonUp="StackPanel_PreviewMouseLeftButtonUp_1">
+                <Image Source="{Binding WindowIcon}" Width="32" />
+                <TextBlock Margin="10, 0,0,0" Text="{Binding WindowTitle}" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Foreground="BlueViolet" Typography.Capitals="SmallCaps" />
+            </StackPanel>
+            <ListBox ItemsSource="{Binding Path=RecordSet}" DockPanel.Dock="Top" x:Name="lstResources" Height="150">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding ., Converter={StaticResource EntityResourceDisplayNameConverter}}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            
+            <Border DockPanel.Dock="Bottom" Height="35">
+                <DockPanel>
+                    <Button Content="No Thanks, I'll go it alone" DockPanel.Dock="Right" Click="Button_Click_1" Margin="5"/>
+                    <Border />
+                </DockPanel>
+            </Border>
+            
             <!-- put item details here -->
-            <UI:EntityResourceDetails EntityResource="{Binding ElementName=lstResources, Path=SelectedItem}" />
-        </DockPanel> 
+            <UI:EntityResourceDetails EntityResource="{Binding ElementName=lstResources, Path=SelectedItem}" Margin="5" />
+        </DockPanel>
     </Grid>
 </Window>

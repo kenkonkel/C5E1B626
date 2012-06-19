@@ -14,7 +14,10 @@
             <TextBlock Text="{Binding EntityResource.Name}" FontWeight="Bold" FontSize="18" Foreground="Pink" Typography.Capitals="SmallCaps" />
             <TextBlock Text="{Binding EntityResource.Description}" Typography.StylisticSet3="True" />
           </StackPanel>
-          <ListBox ItemsSource="{Binding EntityResource.Locations}" />
+          <StackPanel>
+            <TextBlock Text="Locations" Typography.Capitals="SmallCaps"/>
+            <ListBox ItemsSource="{Binding EntityResource.Locations}" Height="75"/>
+          </StackPanel>
       </DockPanel>
             
     </Grid>

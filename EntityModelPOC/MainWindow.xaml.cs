@@ -29,5 +29,15 @@ namespace EntityModelPOC
 			InitializeComponent();
 			Model = TryFindResource("Model") as EntityModelModel;
 		}
+
+		private void StackPanel_PreviewMouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+		{
+			Model.LoadSwitch();
+		}
+
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			Close();
+		}
 	}
 }

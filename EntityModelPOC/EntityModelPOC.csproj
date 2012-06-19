@@ -58,9 +58,11 @@
     </ApplicationDefinition>
     <Compile Include="Model\EntityModelModel.cs" />
     <Compile Include="Model\EntityResourceExtensions.cs" />
+    <Compile Include="Transport\EntityModel\AddressResource.cs" />
+    <Compile Include="Transport\EntityModel\ContactResource.cs" />
     <Compile Include="Transport\EntityModel\EntityResource.cs" />
     <Compile Include="Transport\EntityModel\EntityRoleResource.cs" />
-    <Compile Include="Transport\EntityModel\LocationResource.cs" />
+    <Compile Include="Transport\EntityModel\LocationDetailsResource.cs" />
     <Compile Include="Transport\EntityModel\PhoneNumberResource.cs" />
     <Compile Include="UI\EntityResourceDetails.xaml.cs">
       <DependentUpon>EntityResourceDetails.xaml</DependentUpon>
@@ -111,7 +113,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="UI\Manufacturer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Vendor.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

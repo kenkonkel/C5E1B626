@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using EntityModelPOC.Transport.EntityModel;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -14,7 +15,7 @@ namespace EntityModelPOC.ApplicationService
 		//private readonly string BASE_URI = System.Configuration.ConfigurationManager.AppSettings.Get("ENTITY_MANAGER_URI");
 		private readonly string BASE_URI = "http://entitymanagerdev.iqmetrix.net/v1/";
 
-		public IList<Transport.EntityModel.EntityResource> GetEntityModelManufacturers()
+		public IList<EntityResource> GetEntityModelManufacturers()
 		{
 			var request = new RestRequest { Resource = "manufacturers" };
 			var response = Execute<List<Transport.EntityModel.EntityResource>>(request);
@@ -60,6 +61,14 @@ namespace EntityModelPOC.ApplicationService
 		}
 
 		#endregion
+
+		public IList<EntityResource> GetEntityModelVendors()
+		{
+			var request = new RestRequest { Resource = "vendors" };
+			var response = Execute<List<Transport.EntityModel.EntityResource>>(request);
+
+			return response.Data;
+		}
 	}
 
 	[Serializable]
