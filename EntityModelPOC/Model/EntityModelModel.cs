@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using EntityModelPOC.Transport.EntityModel;
+using IQ.EntityManager.DataService.Model;
 
 namespace EntityModelPOC.Model
 {

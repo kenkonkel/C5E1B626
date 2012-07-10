@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using EntityModelPOC.Transport.EntityModel;
+using IQ.EntityManager.DataService.Model;
 
 namespace EntityModelPOC.UI
 {

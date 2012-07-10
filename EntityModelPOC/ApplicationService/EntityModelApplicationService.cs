@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using EntityModelPOC.Transport.EntityModel;
+using IQ.EntityManager.DataService.Model;
+using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -13,27 +14,34 @@ namespace EntityModelPOC.ApplicationService
 	public class EntityModelApplicationService
 	{
 		//private readonly string BASE_URI = System.Configuration.ConfigurationManager.AppSettings.Get("ENTITY_MANAGER_URI");
-		private readonly string BASE_URI = "http://entitymanagerdev.iqmetrix.net/v1/";
+		private readonly string BASE_URI = "http://entitymanagerintegration.iqmetrix.net/v1/manufacturers";
 
 		public IList<EntityResource> GetEntityModelManufacturers()
 		{
 			var request = new RestRequest { Resource = "manufacturers" };
-			var response = Execute<List<Transport.EntityModel.EntityResource>>(request);
+			var response = Execute<List<EntityResource>>(request);
 
-			return response.Data;
+			return response;
 		}
 
 		// STUFF TO CONNECT TO ENTITY MODEL.
 		#region REST HELPERS
 
-		public RestResponse<T> Execute<T>(RestRequest request) where T : new()
+		protected static T Deserialize<T>(IRestResponse response)
+		{
+			// Default RestSharp Deserializer doesn't seem to like interfaces, so going with Json.NET.
+			return JsonConvert.DeserializeObject<T>(response.Content);
+		}
+
+
+		public T Execute<T>(RestRequest request) where T : new()
 		{
 			string resourceUri = request.Resource;
 			var response = ClientFactory().Execute<T>(request);
 			
-			CheckResponseForError(response);
+			//CheckResponseForError(response);
 
-			return response;
+			return Deserialize<T>(response);
 		}
 
 		private RestClient ClientFactory()
@@ -65,9 +73,9 @@ namespace EntityModelPOC.ApplicationService
 		public IList<EntityResource> GetEntityModelVendors()
 		{
 			var request = new RestRequest { Resource = "vendors" };
-			var response = Execute<List<Transport.EntityModel.EntityResource>>(request);
+			var response = Execute<List<EntityResource>>(request);
 
-			return response.Data;
+			return response;
 		}
 	}
 

@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IQ.EntityManager.DataService.Contracts">
+      <HintPath>packages\Entity.Manager.Web.Api.Transport.0.0.571-develop\lib\net40\IQ.EntityManager.DataService.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>Libs\RestSharp.dll</HintPath>
     </Reference>
@@ -58,12 +64,6 @@
     </ApplicationDefinition>
     <Compile Include="Model\EntityModelModel.cs" />
     <Compile Include="Model\EntityResourceExtensions.cs" />
-    <Compile Include="Transport\EntityModel\AddressResource.cs" />
-    <Compile Include="Transport\EntityModel\ContactResource.cs" />
-    <Compile Include="Transport\EntityModel\EntityResource.cs" />
-    <Compile Include="Transport\EntityModel\EntityRoleResource.cs" />
-    <Compile Include="Transport\EntityModel\LocationDetailsResource.cs" />
-    <Compile Include="Transport\EntityModel\PhoneNumberResource.cs" />
     <Compile Include="UI\EntityResourceDetails.xaml.cs">
       <DependentUpon>EntityResourceDetails.xaml</DependentUpon>
     </Compile>
@@ -104,6 +104,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

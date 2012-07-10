@@ -1,34 +1,50 @@
 ﻿<Window x:Class="EntityModelPOC.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Model="clr-namespace:EntityModelPOC.Model"
-        xmlns:UI="clr-namespace:EntityModelPOC.UI" Title="MainWindow" Height="350" Width="525">
+        xmlns:UI="clr-namespace:EntityModelPOC.UI" Title="MainWindow" Height="360" Width="690">
     <Window.Resources>
         <Model:EntityModelModel x:Key="Model" />
       <UI:EntityResourceDisplayNameConverter x:Key="EntityResourceDisplayNameConverter" />
     </Window.Resources>
     <Grid DataContext="{Binding Source={StaticResource Model}}">
         <DockPanel>
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="35" PreviewMouseLeftButtonUp="StackPanel_PreviewMouseLeftButtonUp_1">
-                <Image Source="{Binding WindowIcon}" Width="32" />
-                <TextBlock Margin="10, 0,0,0" Text="{Binding WindowTitle}" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Foreground="BlueViolet" Typography.Capitals="SmallCaps" />
-            </StackPanel>
-            <ListBox ItemsSource="{Binding Path=RecordSet}" DockPanel.Dock="Top" x:Name="lstResources" Height="150">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding ., Converter={StaticResource EntityResourceDisplayNameConverter}}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <DockPanel DockPanel.Dock="Top" Height="18" Background="Black">
+                <StackPanel Orientation="Horizontal"  PreviewMouseLeftButtonUp="StackPanel_PreviewMouseLeftButtonUp_1" >
+                    <Image Source="{Binding WindowIcon}" Width="16" />
+                    <TextBlock Margin="5, 0,0,0" VerticalAlignment="Center" FontFamily="Calibri" FontWeight="Bold" FontSize="13" Foreground="White">
+                        <Run Text="Add "/>
+                        <Run Text="{Binding WindowTitle, Mode=OneWay}"/>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Text="X" HorizontalAlignment="Right" Foreground="White" />
+            </DockPanel>
+            <Grid DockPanel.Dock="Left" Width="125">
+                
+            </Grid>
             
             <Border DockPanel.Dock="Bottom" Height="35">
                 <DockPanel>
-                    <Button Content="No Thanks, I'll go it alone" DockPanel.Dock="Right" Click="Button_Click_1" Margin="5"/>
+                    <Button DockPanel.Dock="Right" Click="Button_Click_1" Margin="5">
+                        <Button.Content>
+                            <TextBlock FontWeight="Bold" FontSize="10" Foreground="#FF616161">
+                                <Run Text="Skip This Step and Create" />
+                                <Run Text="{Binding WindowTitle, Mode=OneWay}"/>
+                                <Run Text="Manually" />
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
                     <Border />
                 </DockPanel>
             </Border>
             
-            <!-- put item details here -->
-            <UI:EntityResourceDetails EntityResource="{Binding ElementName=lstResources, Path=SelectedItem}" Margin="5" />
+           <ListBox ItemsSource="{Binding Path=RecordSet}" DockPanel.Dock="Top" x:Name="lstResources" Margin="10" BorderThickness="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <!-- put item details here -->
+                        <UI:EntityResourceDetails EntityResource="{Binding ElementName=lstResources, Path=SelectedItem}" Margin="5" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </DockPanel>
     </Grid>
 </Window>

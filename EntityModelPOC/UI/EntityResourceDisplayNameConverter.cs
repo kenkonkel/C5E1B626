@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using EntityModelPOC.Model;
-using EntityModelPOC.Transport.EntityModel;
+using IQ.EntityManager.DataService.Model;
 
 namespace EntityModelPOC.UI
 {
