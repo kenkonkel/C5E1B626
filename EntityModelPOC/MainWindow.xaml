@@ -49,7 +49,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <!-- put item details here -->
-                        <Grid HorizontalAlignment="Stretch">
+                        <Grid>
                             <UI:EntityResourceDetails EntityResource="{TemplateBinding Content}" Margin="5" />
                         </Grid>                        
                     </DataTemplate>

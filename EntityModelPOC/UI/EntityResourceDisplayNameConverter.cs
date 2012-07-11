@@ -50,4 +50,22 @@ namespace EntityModelPOC.UI
 
 		#endregion
 	}
+
+	class CollectionLengthConverter : IValueConverter
+	{
+		#region Implementation of IValueConverter
+
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			var resource = value as IEnumerable<object>;
+			return resource == null ? "0" : resource.Count().ToString();
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+	}
 }
