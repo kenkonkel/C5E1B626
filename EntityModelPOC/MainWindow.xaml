@@ -41,10 +41,17 @@
             </Border>
             
            <ListBox ItemsSource="{Binding Path=RecordSet}" DockPanel.Dock="Top" x:Name="lstResources" Margin="10" BorderThickness="0">
+                <ListBox.Resources>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.Resources>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <!-- put item details here -->
-                        <UI:EntityResourceDetails EntityResource="{TemplateBinding Content}" Margin="5" HorizontalAlignment="Stretch" />
+                        <Grid HorizontalAlignment="Stretch">
+                            <UI:EntityResourceDetails EntityResource="{TemplateBinding Content}" Margin="5" />
+                        </Grid>                        
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
