@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using IQ.EntityManager.DataService.Model;
@@ -12,7 +14,30 @@ namespace EntityModelPOC.Model
 {
 	public class EntityModelModel : INotifyPropertyChanged
 	{
-		enum WindowDisplayType{Manufacturer, Vendor}
+		public EntityModelModel()
+		{
+			_records = new CollectionViewSource();
+			_records.Filter += (sender, e) =>
+			{
+				var entity = e.Item as EntityResource;
+				e.Accepted = string.IsNullOrWhiteSpace(_listFilter) || entity.Name.ToLower().Contains(_listFilter);
+			};
+		}
+
+		private string _listFilter = string.Empty;
+		public string ListFilter 
+		{ 
+			get { return _listFilter; }
+			set { 
+				_listFilter = value.ToLower(); 
+				_records.View.Refresh(); 
+			} 
+		}
+
+
+		private readonly CollectionViewSource _records;
+		
+		enum WindowDisplayType { Manufacturer, Vendor }
 
 		private WindowDisplayType WindowType { get; set; }
 
@@ -45,14 +70,21 @@ namespace EntityModelPOC.Model
 			get { return WindowType.ToString(); }
 		}
 
-		public IList<EntityResource> RecordSet
-		{
-			get { return WindowType == WindowDisplayType.Manufacturer ? GetMeSomeManufacturers : GetMeSomeVendors; }
+		public ICollectionView RecordSet { 
+			get
+			{
+				if (_records.Source == null)
+				{
+					_records.Source = WindowType == WindowDisplayType.Manufacturer ? GetMeSomeManufacturers : GetMeSomeVendors;
+				}
+				return _records.View;
+			}
 		}
 
 		public void LoadSwitch()
 		{
 			WindowType = WindowType == WindowDisplayType.Manufacturer? WindowDisplayType.Vendor : WindowDisplayType.Manufacturer;
+			_records.Source = null;
 			SendPropertyChanged("RecordSet");
 			SendPropertyChanged("WindowTitle");
 			SendPropertyChanged("WindowIcon");

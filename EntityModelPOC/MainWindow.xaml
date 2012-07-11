@@ -4,7 +4,7 @@
         xmlns:UI="clr-namespace:EntityModelPOC.UI" Title="MainWindow" Height="360" Width="690">
     <Window.Resources>
         <Model:EntityModelModel x:Key="Model" />
-      <UI:EntityResourceDisplayNameConverter x:Key="EntityResourceDisplayNameConverter" />
+        <UI:EntityResourceDisplayNameConverter x:Key="EntityResourceDisplayNameConverter" />
     </Window.Resources>
     <Grid DataContext="{Binding Source={StaticResource Model}}">
         <DockPanel>
@@ -19,7 +19,10 @@
                 <TextBlock Text="X" HorizontalAlignment="Right" Foreground="White" />
             </DockPanel>
             <Grid DockPanel.Dock="Left" Width="125">
-                
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Search" />
+                    <TextBox Text="{Binding ListFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="1"/>
+                </StackPanel>
             </Grid>
             
             <Border DockPanel.Dock="Bottom" Height="35">
@@ -41,7 +44,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <!-- put item details here -->
-                        <UI:EntityResourceDetails EntityResource="{Binding ElementName=lstResources, Path=SelectedItem}" Margin="5" />
+                        <UI:EntityResourceDetails EntityResource="{TemplateBinding Content}" Margin="5" HorizontalAlignment="Stretch" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
