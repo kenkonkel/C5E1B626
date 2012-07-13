@@ -18,12 +18,7 @@
                 </StackPanel>
                 <TextBlock Text="X" HorizontalAlignment="Right" Foreground="White" />
             </DockPanel>
-            <Grid DockPanel.Dock="Left" Width="125">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Search" />
-                    <TextBox Text="{Binding ListFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="1"/>
-                </StackPanel>
-            </Grid>
+            
             
             <Border DockPanel.Dock="Bottom" Height="35">
                 <DockPanel>
@@ -40,21 +35,58 @@
                 </DockPanel>
             </Border>
             
-           <ListBox ItemsSource="{Binding Path=RecordSet}" DockPanel.Dock="Top" x:Name="lstResources" Margin="10" BorderThickness="0">
-                <ListBox.Resources>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListBox.Resources>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <!-- put item details here -->
-                        <Grid>
-                            <UI:EntityResourceDetails EntityResource="{TemplateBinding Content}" Margin="5" />
-                        </Grid>                        
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <Grid>
+                <Border x:Name="Resources">
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Left" Width="125">
+                            <StackPanel Orientation="Vertical" x:Name="SearchBar">
+                                <TextBlock Text="Search" />
+                                <TextBox Text="{Binding ListFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="1"/>
+                            </StackPanel>
+                        </Grid>
+                    
+                        <ListBox ItemsSource="{Binding Path=RecordSet}" x:Name="lstResources" Margin="10" BorderThickness="0" SelectedItem="{Binding CurrentlySelectedEntity}">
+                            <ListBox.Resources>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListBox.Resources>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- put item details here -->
+                                    <Grid>
+                                        <UI:EntityResourceDetails EntityResource="{TemplateBinding Content}" Margin="5" MouseDoubleClick="EntityResource_OnMouseDoubleClick"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </DockPanel>
+                </Border>
+                
+                <Border x:Name="Addresses" Margin="690,0,0,0">
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Left" Width="125">
+                            <Button FontSize="42" Content="&lt;&lt;" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Center" Click="Addresses_GoBack"/>
+                        </Grid>
+                        
+                        <ListBox ItemsSource="{Binding Path=AddressRecordSet}" DockPanel.Dock="Top" x:Name="lstAddresses" Margin="10" BorderThickness="0">
+                            <ListBox.Resources>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListBox.Resources>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- put item details here -->
+                                    <Grid>
+                                        <UI:EntityAddressDetails EntityResource="{TemplateBinding Content}" Margin="5" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </DockPanel>
+                </Border>
+            </Grid>      
         </DockPanel>
     </Grid>
 </Window>

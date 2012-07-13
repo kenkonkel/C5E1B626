@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -37,6 +38,37 @@ namespace EntityModelPOC
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
 			Close();
+		}
+
+		private void EntityResource_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			// slide in the addresses.
+			slide(this.Resources, this.Addresses, Direction.Right);
+		}
+
+		private enum Direction { Left, Right }
+		private void slide(Border oldVisual, Border newVisual, Direction direction)
+		{
+			var width = this.ActualWidth;
+			var animOut = new ThicknessAnimation(new Thickness(0), new Thickness(direction == Direction.Right ? -width : width, 0, direction == Direction.Right ? width : 0, 0), new Duration(TimeSpan.FromMilliseconds(500)));
+			var animIn = new ThicknessAnimation(new Thickness(direction == Direction.Right ? width : -width, 0, direction == Direction.Right ? 0 : width, 0), new Thickness(0), new Duration(TimeSpan.FromMilliseconds(500)));
+
+			Storyboard.SetTarget(animOut, oldVisual);
+			Storyboard.SetTargetProperty(animOut, new PropertyPath(MarginProperty));
+
+			Storyboard.SetTarget(animIn, newVisual);
+			Storyboard.SetTargetProperty(animIn, new PropertyPath(MarginProperty));
+
+			var storyboard = new Storyboard();
+			storyboard.Children.Add(animOut);
+			storyboard.Children.Add(animIn);
+			storyboard.Freeze();
+			BeginStoryboard(storyboard);
+		}
+
+		private void Addresses_GoBack(object sender, RoutedEventArgs routedEventArgs)
+		{
+			slide(this.Addresses, this.Resources, Direction.Left);
 		}
 	}
 }

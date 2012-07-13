@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="EntityModelPOC.UI.EntityResourceDetails"
+﻿<UserControl x:Class="EntityModelPOC.UI.EntityAddressDetails"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,34 +11,41 @@
   </UserControl.Resources>
 <DockPanel>
     <!-- name of resource -->
-    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Text="{Binding EntityResource.Name}" FontWeight="Bold" FontSize="36" Foreground="Pink" Typography.Capitals="SmallCaps" />
+    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Text="{Binding EntityResource.Name}" FontWeight="Bold" FontSize="14" Foreground="DarkGray" Typography.Capitals="SmallCaps" />
    
     
     <!-- how many other locations are there? -->
-    <!--<TextBlock DockPanel.Dock="Right" HorizontalAlignment="Stretch">
+    <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Stretch">
         <Run Text="{Binding EntityResource.Relationships, Converter={StaticResource CollectionLengthConverter}}"/>
         <Run Text="Other Locations" />
-    </TextBlock>-->
+    </TextBlock>
           
         <Grid HorizontalAlignment="Stretch">
-            <!--<Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>-->
+            </Grid.ColumnDefinitions>
             <!-- default address -->
-            <!--<StackPanel Orientation="Vertical" Grid.Column="0">
+            <StackPanel Orientation="Vertical" Grid.Column="0">
                 <TextBlock Text="Address"/>
-                <TextBlock Text="{Binding EntityResource.LocationDetails.Address}"/>
-                <TextBlock Text="{Binding EntityResource.LocationDetails.LocationType}" />
-                <TextBlock Text="{Binding EntityResource.LocationDetails.LocationSubType}" />
-            </StackPanel>-->
+                <TextBlock Text="{Binding EntityResource.LocationDetails.Address.AddressLine1}"/>
+                <TextBlock Text="{Binding EntityResource.LocationDetails.Address.AddressLine2}" />
+                <TextBlock>
+                    <Run Text="{Binding EntityResource.LocationDetails.Address.City}" />
+                    <Run Text=", " />
+                    <Run Text="{Binding EntityResource.LocationDetails.Address.StateCode}" />
+                    <Run Text=", " />
+                    <Run Text="{Binding EntityResource.LocationDetails.Address.CountryCode}" />
+                </TextBlock>
+                <TextBlock Text="{Binding EntityResource.LocationDetails.Address.Zip}" />
+            </StackPanel>
 
             <!-- contacts -->
             <!--<ListBox ItemsSource="{Binding EntityResource.LocationDetails.Contacts}" DisplayMemberPath="Name" Margin="15,0,0,0" BorderThickness="0"/>-->
-            <!--<TextBlock Grid.Column="1">
+            <TextBlock Grid.Column="1">
                     <Run Text="{Binding EntityResource.LocationDetails.Contacts, Converter={StaticResource CollectionLengthConverter}}"/>
                     <Run Text="Contacts" />
-            </TextBlock>-->
+            </TextBlock>
         </Grid>
 </DockPanel>    
 </UserControl>

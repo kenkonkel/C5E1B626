@@ -11,26 +11,11 @@ using RestSharp.Deserializers;
 
 namespace EntityModelPOC.ApplicationService
 {
+	
 	public class EntityModelApplicationService
 	{
 		//private readonly string BASE_URI = System.Configuration.ConfigurationManager.AppSettings.Get("ENTITY_MANAGER_URI");
 		private readonly string BASE_URI = "http://entitymanagerintegration.iqmetrix.net/v1/";
-
-		public IList<EntityResource> GetEntityModelManufacturers()
-		{
-			var request = new RestRequest { Resource = "manufacturers" };
-			var response = Execute<List<EntityResource>>(request);
-
-			return response;
-		}
-
-		public IList<EntityResource> GetEntityModelVendors()
-		{
-			var request = new RestRequest { Resource = "vendors" };
-			var response = Execute<List<EntityResource>>(request);
-
-			return response;
-		}
 
 		// STUFF TO CONNECT TO ENTITY MODEL.
 		#region REST HELPERS
@@ -70,6 +55,29 @@ namespace EntityModelPOC.ApplicationService
 
 		#endregion
 
+		public IList<EntityResource> GetLocations(int id)
+		{
+			var request = new RestRequest() { Resource = string.Format("entities({0})/locations", id) };
+			var response = Execute<List<EntityResource>>(request);
+
+			return response;
+		}
+
+		public IList<EntityResource> GetEntityModelManufacturers()
+		{
+			var request = new RestRequest { Resource = "manufacturers" };
+			var response = Execute<List<EntityResource>>(request);
+
+			return response;
+		}
+
+		public IList<EntityResource> GetEntityModelVendors()
+		{
+			var request = new RestRequest { Resource = "vendors" };
+			var response = Execute<List<EntityResource>>(request);
+
+			return response;
+		}
 	}
 
 	[Serializable]
