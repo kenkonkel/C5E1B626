@@ -11,44 +11,41 @@
     <UI:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
   </UserControl.Resources>
 <DockPanel>
-    <Grid DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-        <!-- default address -->
-        
-
-        <!-- contacts -->
-        <!--<ListBox ItemsSource="{Binding EntityResource.LocationDetails.Contacts}" DisplayMemberPath="Name" Margin="15,0,0,0" BorderThickness="0"/>-->
-        <!--<TextBlock Grid.Column="1" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}">
-                    <Run Text="{Binding EntityResource.LocationDetails.Contacts, Converter={StaticResource CollectionLengthConverter}}"/>
-                    <Run Text="Contacts" />
-            </TextBlock>-->
-        </Grid>
-    
     <!-- name of resource -->
-    <TextBlock DockPanel.Dock="Top" Text="{Binding EntityResource.Name}" FontWeight="Bold" FontSize="14" Foreground="DarkGray" Typography.Capitals="SmallCaps" />
+    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Text="{Binding EntityResource.Name}" FontWeight="Bold" FontSize="14" Foreground="DarkGray" Typography.Capitals="SmallCaps" />
    
-    <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
-            <TextBlock Text="{Binding EntityResource.LocationDetails.Address.AddressLine1}" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}"/>
-            <TextBlock Text="{Binding EntityResource.LocationDetails.Address.AddressLine2}" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}"/>
-            <TextBlock>
-                        <Run Text="{Binding EntityResource.LocationDetails.Address.City}" />
-                        <Run Text=", " />
-                        <Run Text="{Binding EntityResource.LocationDetails.Address.StateCode}" />
-                        <Run Text=", " />
-                        <Run Text="{Binding EntityResource.LocationDetails.Address.CountryCode}" />
-            </TextBlock>
-            <TextBlock Text="{Binding EntityResource.LocationDetails.Address.Zip}" />
-        </StackPanel>
-   
+    
     <!-- how many other locations are there? -->
     <!--<TextBlock DockPanel.Dock="Right" HorizontalAlignment="Stretch">
         <Run Text="{Binding EntityResource.Relationships, Converter={StaticResource CollectionLengthConverter}}"/>
         <Run Text="Other Locations" />
     </TextBlock>-->
           
-        
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- default address -->
+            <StackPanel Orientation="Vertical" Grid.Column="0">
+                <TextBlock Text="{Binding EntityResource.LocationDetails.Address.AddressLine1}" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                <TextBlock Text="{Binding EntityResource.LocationDetails.Address.AddressLine2}" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                <TextBlock>
+                    <Run Text="{Binding EntityResource.LocationDetails.Address.City}" />
+                    <Run Text=", " />
+                    <Run Text="{Binding EntityResource.LocationDetails.Address.StateCode}" />
+                    <Run Text=", " />
+                    <Run Text="{Binding EntityResource.LocationDetails.Address.CountryCode}" />
+                </TextBlock>
+                <TextBlock Text="{Binding EntityResource.LocationDetails.Address.Zip}" />
+            </StackPanel>
+
+            <!-- contacts -->
+            <!--<ListBox ItemsSource="{Binding EntityResource.LocationDetails.Contacts}" DisplayMemberPath="Name" Margin="15,0,0,0" BorderThickness="0"/>-->
+            <TextBlock Grid.Column="1" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}">
+                    <Run Text="{Binding EntityResource.LocationDetails.Contacts, Converter={StaticResource CollectionLengthConverter}}"/>
+                    <Run Text="Contacts" />
+            </TextBlock>
+        </Grid>
 </DockPanel>    
 </UserControl>
