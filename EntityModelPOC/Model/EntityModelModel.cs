@@ -14,7 +14,7 @@ namespace EntityModelPOC.Model
 {
 	public class EntityModelModel
 	{
-		public enum EntityType { Vendor, Manufacturer }
+		public enum EntityType { Manufacturer, Vendor }
 
 		public EntityModelModel()
 		{
@@ -31,8 +31,12 @@ namespace EntityModelPOC.Model
 			TypeDescriptor.GetProperties(this)["CurrentlySelectedEntity"].AddValueChanged(this, delegate
 				{
 					_addresses.Source = null;
+					_set("EntityName", string.Empty);
 					if (CurrentlySelectedEntity != null)
-						_addresses.Source = GetAddressesForEntity(CurrentlySelectedEntity.Id);						
+					{
+						_addresses.Source = GetAddressesForEntity(CurrentlySelectedEntity.Id);
+						_set("EntityName", CurrentlySelectedEntity.Name);
+					}
 					
 					_set("AddressRecordSet", _addresses.View);
 				});
@@ -84,9 +88,10 @@ namespace EntityModelPOC.Model
 
 		public ImageSource WindowIcon { get; set; }
 		public string WindowTitle { get; set; }
+		public string EntityName { get; set; }
 		public ICollectionView RecordSet { get; set; }
 		public ICollectionView AddressRecordSet { get; set; }
-		
+
 		public void LoadSwitch()
 		{
 			WindowType = WindowType == EntityType.Manufacturer ? EntityType.Vendor : EntityType.Manufacturer;

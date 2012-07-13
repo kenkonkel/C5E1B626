@@ -8,18 +8,7 @@
     </Window.Resources>
     <Grid DataContext="{Binding Source={StaticResource Model}}">
         <DockPanel>
-            <DockPanel DockPanel.Dock="Top" Height="18" Background="Black">
-                <StackPanel Orientation="Horizontal"  PreviewMouseLeftButtonUp="StackPanel_PreviewMouseLeftButtonUp_1" >
-                    <Image Source="{Binding WindowIcon}" Width="16" />
-                    <TextBlock Margin="5, 0,0,0" VerticalAlignment="Center" FontFamily="Calibri" FontWeight="Bold" FontSize="13" Foreground="White">
-                        <Run Text="Add "/>
-                        <Run Text="{Binding WindowTitle, Mode=OneWay}"/>
-                    </TextBlock>
-                </StackPanel>
-                <TextBlock Text="X" HorizontalAlignment="Right" Foreground="White" />
-            </DockPanel>
-            
-            
+         
             <Border DockPanel.Dock="Bottom" Height="35">
                 <DockPanel>
                     <Button DockPanel.Dock="Right" Click="Button_Click_1" Margin="5">
@@ -38,6 +27,15 @@
             <Grid>
                 <Border x:Name="Resources">
                     <DockPanel>
+                        <DockPanel DockPanel.Dock="Top" Height="18" Background="Black">
+                            <StackPanel Orientation="Horizontal"  PreviewMouseLeftButtonUp="StackPanel_PreviewMouseLeftButtonUp_1" >
+                                <Image Source="{Binding WindowIcon}" Width="16" />
+                                <TextBlock Margin="5, 0,0,0" VerticalAlignment="Center" FontFamily="Calibri" FontWeight="Bold" FontSize="13" Foreground="White">                        
+                        <Run Text="{Binding WindowTitle, Mode=OneWay}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </DockPanel>
+                        
                         <Grid DockPanel.Dock="Left" Width="125">
                             <StackPanel Orientation="Vertical" x:Name="SearchBar">
                                 <TextBlock Text="Search" />
@@ -65,6 +63,16 @@
                 
                 <Border x:Name="Addresses" Margin="690,0,0,0">
                     <DockPanel>
+                        <DockPanel DockPanel.Dock="Top" Height="18" Background="Black">
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Source="{Binding WindowIcon}" Width="16" />
+                                <TextBlock Margin="5, 0,0,0" VerticalAlignment="Center" FontFamily="Calibri" FontWeight="Bold" FontSize="13" Foreground="White">                        
+                                    <Run Text="Choose an address for "/>
+                                    <Run Text="{Binding EntityName, Mode=OneWay}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </DockPanel>
+                        
                         <Grid DockPanel.Dock="Left" Width="125">
                             <Button FontSize="42" Content="&lt;&lt;" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Center" Click="Addresses_GoBack"/>
                         </Grid>
@@ -79,7 +87,7 @@
                                 <DataTemplate>
                                     <!-- put item details here -->
                                     <Grid>
-                                        <UI:EntityAddressDetails EntityResource="{TemplateBinding Content}" Margin="5" />
+                                        <UI:EntityAddressDetails EntityResource="{TemplateBinding Content}" Margin="5" MouseDoubleClick="EntityAddressDetails_MouseDoubleClick" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

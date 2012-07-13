@@ -46,6 +46,12 @@ namespace EntityModelPOC
 			slide(this.Resources, this.Addresses, Direction.Right);
 		}
 
+		private void EntityAddressDetails_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			// slide back, but this would actually select this address.
+			slide(this.Addresses, this.Resources, Direction.Left);
+		}
+
 		private enum Direction { Left, Right }
 		private void slide(Border oldVisual, Border newVisual, Direction direction)
 		{
