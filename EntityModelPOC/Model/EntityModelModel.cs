@@ -44,9 +44,9 @@ namespace EntityModelPOC.Model
 			SetProperties();
 		}
 
-		private IList<EntityResource> GetAddressesForEntity(int id)
+		private IList<LocationResource> GetAddressesForEntity(int id)
 		{
-			var result = Task<IList<EntityResource>>.Factory.StartNew(() => new ApplicationService.EntityModelApplicationService().
+			var result = Task<IList<LocationResource>>.Factory.StartNew(() => new ApplicationService.EntityModelApplicationService().
 			                                                   	GetLocations(CurrentlySelectedEntity.Id));
 
 			return result.Result;

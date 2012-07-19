@@ -55,10 +55,10 @@ namespace EntityModelPOC.ApplicationService
 
 		#endregion
 
-		public IList<EntityResource> GetLocations(int id)
+		public IList<LocationResource> GetLocations(int id)
 		{
 			var request = new RestRequest() { Resource = string.Format("entities({0})/locations", id) };
-			var response = Execute<List<EntityResource>>(request);
+			var response = Execute<List<LocationResource>>(request);
 
 			return response;
 		}

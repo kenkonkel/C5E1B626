@@ -28,22 +28,22 @@
             </Grid.ColumnDefinitions>
             <!-- default address -->
             <StackPanel Orientation="Vertical" Grid.Column="0">
-                <TextBlock Text="{Binding EntityResource.LocationDetails.Address.AddressLine1}" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}"/>
-                <TextBlock Text="{Binding EntityResource.LocationDetails.Address.AddressLine2}" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                <TextBlock Text="{Binding EntityResource.Address.AddressLine1}" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                <TextBlock Text="{Binding EntityResource.Address.AddressLine2}" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}"/>
                 <TextBlock>
-                    <Run Text="{Binding EntityResource.LocationDetails.Address.City}" />
+                    <Run Text="{Binding EntityResource.Address.City}" />
                     <Run Text=", " />
-                    <Run Text="{Binding EntityResource.LocationDetails.Address.StateCode}" />
+                    <Run Text="{Binding EntityResource.Address.StateCode}" />
                     <Run Text=", " />
-                    <Run Text="{Binding EntityResource.LocationDetails.Address.CountryCode}" />
+                    <Run Text="{Binding EntityResource.Address.CountryCode}" />
                 </TextBlock>
-                <TextBlock Text="{Binding EntityResource.LocationDetails.Address.Zip}" />
+                <TextBlock Text="{Binding EntityResource.Address.Zip}" />
             </StackPanel>
 
             <!-- contacts -->
-            <!--<ListBox ItemsSource="{Binding EntityResource.LocationDetails.Contacts}" DisplayMemberPath="Name" Margin="15,0,0,0" BorderThickness="0"/>-->
+            <!--<ListBox ItemsSource="{Binding EntityResource.Contacts}" DisplayMemberPath="Name" Margin="15,0,0,0" BorderThickness="0"/>-->
             <TextBlock Grid.Column="1" Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource CountToVisibilityConverter}}">
-                    <Run Text="{Binding EntityResource.LocationDetails.Contacts, Converter={StaticResource CollectionLengthConverter}}"/>
+                    <Run Text="{Binding EntityResource.Contacts, Converter={StaticResource CollectionLengthConverter}}"/>
                     <Run Text="Contacts" />
             </TextBlock>
         </Grid>

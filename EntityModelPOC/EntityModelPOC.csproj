@@ -34,11 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IQ.EntityManager.DataService.Contracts">
-      <HintPath>packages\Entity.Manager.Web.Api.Transport.0.0.571-develop\lib\net40\IQ.EntityManager.DataService.Contracts.dll</HintPath>
+    <Reference Include="IQ.EntityManager.DataService.Contracts, Version=0.0.738.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Entity.Manager.Web.Api.Transport.0.0.738-develop\lib\net40\IQ.EntityManager.DataService.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>Libs\RestSharp.dll</HintPath>
