@@ -2,16 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:UI="clr-namespace:EntityModelPOC.UI" mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="530" Background="White">
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:UI="clr-namespace:EntityModelPOC.UI"
+             mc:Ignorable="d">
   <UserControl.Resources>
-    <UI:EntityResourceDisplayNameConverter x:Key="EntityResourceDisplayNameConverter" />
-    <UI:CountToVisibility x:Key="CountToVisibility" />
-      <UI:CollectionLengthConverter x:Key="CollectionLengthConverter" />
   </UserControl.Resources>
-<DockPanel>
+<!--<DockPanel>-->
     <!-- name of resource -->
-    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Text="{Binding EntityResource.Name}" FontWeight="Bold" FontSize="36" Foreground="Pink" Typography.Capitals="SmallCaps" />
+    <TextBlock Text="{Binding EntityResource.Name}"  Typography.Capitals="SmallCaps" />
    
     
     <!-- how many other locations are there? -->
@@ -20,7 +17,7 @@
         <Run Text="Other Locations" />
     </TextBlock>-->
           
-        <Grid HorizontalAlignment="Stretch">
+        <!--<Grid>-->
             <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -39,6 +36,6 @@
                     <Run Text="{Binding EntityResource.LocationDetails.Contacts, Converter={StaticResource CollectionLengthConverter}}"/>
                     <Run Text="Contacts" />
             </TextBlock>-->
-        </Grid>
-</DockPanel>    
+        <!--</Grid>-->
+<!--</DockPanel>-->    
 </UserControl>
